@@ -1,6 +1,10 @@
+import { PrimaryButton } from "@/components/PrimaryButton";
+import { PrimaryLink } from "@/components/PrimaryLink";
 
 export default function Home() {
   return (
-    <div>hello world</div>
+    <div className="flex-center min-h-[100dvh]">
+      <PrimaryLink to="/play">play</PrimaryLink>
+    </div>
   );
 }
