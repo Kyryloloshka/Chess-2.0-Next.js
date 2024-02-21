@@ -5,6 +5,7 @@ const blackLogo = "/assets/pieces/br.svg"
 const whiteLogo = "/assets/pieces/wr.svg"
 
 export class Rook extends Figure {
+  public isMoved = false;
   constructor(color: Colors, cell: Cell) {
     super(color, cell);
     this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
@@ -20,5 +21,8 @@ export class Rook extends Figure {
     }
     
     return false
+  }
+  moveFigure(target: Cell): void {
+    this.isMoved = true;
   }
 }
