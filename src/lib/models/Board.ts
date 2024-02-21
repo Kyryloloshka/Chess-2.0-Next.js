@@ -22,6 +22,25 @@ export class Board {
 			this.cells.push(row)
 		}
 	}
+	public setAllPownsFirstStepToFalse(color: Colors, cellFigure: Cell) {
+		console.log("call");
+		
+		for (let i = 0; i < 8; i++) {
+			for (let j = 0; j < 8; j++) {
+				const cell = this.getCell(i, j)
+				if (cell.figure instanceof Pawn && cell.figure.color === color && !cell.equals(cellFigure)) {
+					cell.figure.isPreviousStepFirst = false;
+					console.log(cell.figure);
+				}
+			}
+		}
+	}
+	public removeFigure(x: number, y: number) {
+		const cell = this.getCell(x, y);
+		if (cell) {
+			cell.removeFigure();
+		}
+	}
 
 	public getCopyBoard() {
 		const newBoard = new Board()

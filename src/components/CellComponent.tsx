@@ -7,7 +7,6 @@ interface CellComponentProps {
 }
 
 function CellComponent({ click, cell, selected }: CellComponentProps) {
-	console.log(cell.figure?.logo);
   
 	return (
 		<div style={{ background: cell.available && cell.figure ? "#60bb70" : '' }} onClick={() => click && click(cell)} className={["flex-center", cell.color, selected ? 'selected' : ''].join(' ')}>

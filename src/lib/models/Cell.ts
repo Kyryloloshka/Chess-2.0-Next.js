@@ -63,6 +63,13 @@ export class Cell {
 		}
 		return true
 	}
+	removeFigure() {
+		this.figure = null;
+	}
+
+	equals(other: Cell): boolean {
+    return this.x === other.x && this.y === other.y;
+  }
 
 	setFigure(figure: Figure) {
 		this.figure = figure;
@@ -70,6 +77,7 @@ export class Cell {
 	}
 	moveFigure(target: Cell) {
 		if (this.figure && this.figure?.canMove(target)) {
+			this.board.setAllPownsFirstStepToFalse(this.figure.color, this);
 			this.figure.moveFigure(target)
 			target.setFigure(this.figure)
 			this.figure = null;

@@ -19,8 +19,6 @@ export default function Play() {
 		newBoard.initCells()
     newBoard.addFigures()
 		setBoard(newBoard)
-    console.log(newBoard);
-    
 	}
 
   useEffect(() => {

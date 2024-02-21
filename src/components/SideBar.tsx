@@ -47,7 +47,7 @@ const SideBar = () => {
         <ul className="navigation__list">
           {sideBarLinks.map((link) => {
             return (
-              <li className={`navigation__item ${pathname == link.route && "_active"}`} onClick={activateLink}>
+              <li key={link.route} className={`navigation__item ${pathname == link.route && "_active"}`} onClick={activateLink}>
                 <Link href={link.route} className="navigation__link">
                 <span className="navigation__icon">
                   <img src={`/assets/sideBarIcons/${link.icon}`}/>
