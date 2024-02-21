@@ -15,7 +15,10 @@ export default function Play() {
 		setCurrentPlayer(whitePlayer)
 		const newBoard = new Board();
 		newBoard.initCells()
+    newBoard.addFigures()
 		setBoard(newBoard)
+    console.log(newBoard);
+    
 	}
 
   useEffect(() => {

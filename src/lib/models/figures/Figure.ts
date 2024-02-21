@@ -5,7 +5,7 @@ import logo from "/assets/pieces/db.svg"
 export enum FigureNames {
 	"FIGURE",
 	"KING",
-	"HORSE",
+	"KNIGHT",
 	"PAWN",
 	"QUEEN",
 	"ROOK",
@@ -14,7 +14,7 @@ export enum FigureNames {
 export enum FigurePrioritet {
 	"FIGURE" = 0,
 	"PAWN" = 1,
-	"HORSE" = 2,
+	"KNIGHT" = 2,
 	"BISHOP" = 3,
 	"ROOK" = 4,
 	"QUEEN" = 5,
@@ -28,7 +28,7 @@ export class Figure {
   name: FigureNames;
   id: number;
   prioritet: FigurePrioritet;
-  
+
   constructor(color: Colors, cell: Cell) {
     this.color = color;
     this.cell = cell;

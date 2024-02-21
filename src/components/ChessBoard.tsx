@@ -12,8 +12,8 @@ interface ChessBoardProps {
 
 const ChessBoard = ({board, setBoard, currentPlayer}: ChessBoardProps) => {
   return (
-    <div className="flex-auto max-w-[60%]">
-      <div className="grid grid-rows-8 grid-cols-8 min-w-[200px] aspect-square flex-auto">
+    <div className="flex-auto justify-center items-center max-w-[80%]">
+      <div className="grid grid-rows-8 grid-cols-8 min-w-[200px] max-h-[70vh] mx-auto aspect-square flex-auto">
 				{board.cells.map((row, index) =>
 					<React.Fragment key={index}>
 						{row.map(cell =>
