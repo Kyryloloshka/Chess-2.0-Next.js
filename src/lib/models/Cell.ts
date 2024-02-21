@@ -41,6 +41,28 @@ export class Cell {
 		}
 		return true;
 	}
+	isEmptyHorizontal(target: Cell): boolean {
+		if (this.y !== target.y) {
+			return false;
+		}
+		const min = Math.min(target.x, this.x);
+		const max = Math.max(target.x, this.x);
+		for (let i = min + 1; i < max; i++) {
+			if (!this.board.getCell(i, this.y).isEmpty()) return false;
+		}
+		return true
+	}
+	isEmptyVertical(target: Cell): boolean {
+		if (this.x !== target.x) {
+			return false;
+		}
+		const min = Math.min(target.y, this.y);
+		const max = Math.max(target.y, this.y);
+		for (let i = min + 1; i < max; i++) {
+			if (!this.board.getCell(this.x, i).isEmpty()) return false;
+		}
+		return true
+	}
 
 	setFigure(figure: Figure) {
 		this.figure = figure;

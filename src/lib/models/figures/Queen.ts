@@ -11,4 +11,15 @@ export class Queen extends Figure {
     this.name = FigureNames.QUEEN;
     this.prioritet = FigurePrioritet.QUEEN
   }
+  canMove(target: Cell): boolean {
+    if (!super.canMove(target)) {
+      return false;
+    }
+    if (this.cell.isEmptyHorizontal(target) 
+      || this.cell.isEmptyVertical(target) 
+      || this.cell.isEmptyDiagonal(target)) {
+      return true;
+    }
+    return false;
+  }
 }

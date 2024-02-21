@@ -11,4 +11,14 @@ export class Rook extends Figure {
     this.name = FigureNames.ROOK;
     this.prioritet = FigurePrioritet.ROOK
   }
+  canMove(target: Cell): boolean {
+    if (!super.canMove(target)) {
+      return false
+    }
+    if (this.cell.isEmptyHorizontal(target) || this.cell.isEmptyVertical(target)) {
+      return true;
+    }
+    
+    return false
+  }
 }
