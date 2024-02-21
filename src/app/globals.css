@@ -40,6 +40,7 @@
     --hue: calc(0 + (var(--xp) * 500));
     --bg: hsl(0, 0%, 27%);
     --button-bg-size: 100px;
+    --primary-color: rgba(224, 116, 39, 0.75);
     --glow: radial-gradient(
       50% 50% at center,
       hsl(var(--hue) 80% 85%),
@@ -106,4 +107,225 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.black {
+	background-color: #333;
+}
+
+.white {
+	background-color: #aaa;
+}
+
+
+.navigation {
+  border-radius: 10px;
+  background-color: #333;
+  inset: 40px 0 40px 20px;
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease 0s;
+}
+
+.navigation._active {
+  width: 250px;
+}
+
+.navigation._active .navigation__menuToggle::before {
+  transform: translateY(0) rotate(45deg);
+}
+
+.navigation._active .navigation__menuToggle::after {
+  transform: translateY(0) rotate(-45deg);
+  box-shadow: none;
+}
+
+.navigation._active .navigation__text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.navigation__list {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  justify-content: flex-start;
+}
+
+.navigation__item {
+  position: relative;
+  width: 100%;
+  height: 76px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  border: 8px solid transparent;
+  transition: all 0.5s ease 0s;
+}
+
+.navigation__item._active {
+  transform: translateX(30px);
+  background: var(--bg);
+}
+
+.navigation__item._active::before {
+  right: 22px;
+  transform: scale(0.5);
+}
+
+.navigation__item._active::after {
+  right: 22px;
+  transform: scale(0.5);
+}
+
+.navigation__item._active .navigation__icon {
+  color: #fff;
+  background: var(--primary-color);
+}
+
+.navigation__item._active .navigation__icon::before {
+  opacity: 0.7;
+}
+
+.navigation__item._active .navigation__icon::after {
+  opacity: 1;
+}
+
+.navigation__item._active .navigation__text {
+  color: #fff;
+}
+
+.navigation__item::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -28px;
+  right: -10px;
+  background: transparent;
+  border-bottom-right-radius: 20px;
+  box-shadow: 6px 5px 0 5px var(--bg);
+  transform: scale(0);
+  transform-origin: bottom right;
+  transition: all 0.5s ease 0s;
+}
+
+.navigation__item::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: -28px;
+  right: -10px;
+  background: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 6px -3px 0 3px var(--bg);
+  transform: scale(0);
+  transform-origin: top right;
+  transition: all 0.5s ease 0s;
+}
+
+.navigation__link {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  z-index: 8;
+  gap: 10px;
+}
+
+.navigation__icon {
+  position: relative;
+  display: block;
+  flex: 0 0 60px;
+  height: 60px;
+  border-radius: 8px;
+  font-size: 1.75em;
+  line-height: 60px;
+  border: 6px solid transparent;
+  transition: all 0.5s ease 0s;
+  padding: 5px;
+}
+
+.navigation__icon::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--clr);
+  filter: blur(8px);
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.5s ease 0s;
+}
+
+.navigation__icon::after {
+  content: "";
+  position: absolute;
+  top: 17px;
+  left: -52px;
+  width: 15px;
+  opacity: 0;
+  height: 15px;
+  background-color: var(--primary-color);
+  outline: 8px solid var(--bg);
+  border-radius: 50%;
+}
+
+.navigation__text {
+  position: relative;
+  padding: 0 15px;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease 0s;
+}
+
+.navigation__menuToggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  padding: 0 25px;
+  border-bottom: 1px solid rgba(255,255,255, 0.25);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navigation__menuToggle::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: var(--bg);
+  transform: translateY(-8px);
+  transition: all 0.5s ease 0s;
+}
+
+.navigation__menuToggle::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: var(--bg);
+  transform: translateY(8px);
+  box-shadow: 0px -8px 0px var(--bg);
+  transition: all 0.5s ease 0s;
 }

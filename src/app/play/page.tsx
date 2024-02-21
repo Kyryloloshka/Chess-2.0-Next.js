@@ -9,7 +9,7 @@ export default function Play() {
   const [board, setBoard] = useState(new Board())
   const [whitePlayer] = useState<Player>(new Player(Colors.WHITE))
 	const [blackPlayer] = useState(new Player(Colors.BLACK))
-  const [currentPlayer, setCurrentPlayer] = useState<Player>(new Player(Colors.WHITE))
+  const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer)
 
   function restart() {
 		setCurrentPlayer(whitePlayer)

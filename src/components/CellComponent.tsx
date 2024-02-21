@@ -9,8 +9,9 @@ interface CellComponentProps {
 function CellComponent({ click, cell, selected }: CellComponentProps) {
 	
 	return (
-		<div style={{ background: cell.available ? "green" : '' }} onClick={() => click ? click(cell) : null} className={["cell", cell.color, selected ? 'selected' : ''].join(' ')}>
-		</div>
+		<div style={{ background: cell.available ? "green" : '' }} onClick={() => click ? click(cell) : null} className={["flex justify-center items-center", cell.color, selected ? 'selected' : ''].join(' ')}>
+      <div className="w-3 h-3"></div>
+    </div>
 	)
 }
 
