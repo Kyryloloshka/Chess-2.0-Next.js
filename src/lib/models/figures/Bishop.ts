@@ -11,4 +11,17 @@ export class Bishop extends Figure {
     this.name = FigureNames.BISHOP;
     this.prioritet = FigurePrioritet.BISHOP;
   }
+  canMove(target: Cell): boolean {
+    if (!super.canMove(target)) {
+      return false
+    }
+    if (this.cell.isEmptyDiagonal(target)) {
+      return true;
+    }
+    
+    return false
+  }
+  moveFigure(target: Cell): void {
+    super.moveFigure(target);
+  }
 }

@@ -30,6 +30,17 @@ export class Cell {
 		}
 		return false
 	}
+	isEmptyDiagonal(target: Cell): boolean {
+		const x = Math.abs(target.x - this.x);
+		const y = Math.abs(target.y - this.y)
+		if (x != y) return false;
+		const dy = this.y < target.y ? 1 : -1;
+		const dx = this.x < target.x ? 1 : -1;
+		for (let i = 1; i < y; i++) {
+			if (!this.board.getCell(this.x + dx * i, this.y + dy * i).isEmpty()) return false;
+		}
+		return true;
+	}
 
 	setFigure(figure: Figure) {
 		this.figure = figure;
