@@ -20,4 +20,26 @@ export class Cell {
 		this.id = Math.random();
 		this.figure = figure;
 	}
+	isEmpty(): boolean {
+		return this.figure === null;
+	}
+
+	isEnemy(target: Cell): boolean {
+		if (target.figure) {
+			return this.figure?.color !== target.figure.color;
+		}
+		return false
+	}
+
+	setFigure(figure: Figure) {
+		this.figure = figure;
+		this.figure.cell = this
+	}
+	moveFigure(target: Cell) {
+		if (this.figure && this.figure?.canMove(target)) {
+			this.figure.moveFigure(target)
+			target.setFigure(this.figure)
+			this.figure = null;
+		}
+	}
 }

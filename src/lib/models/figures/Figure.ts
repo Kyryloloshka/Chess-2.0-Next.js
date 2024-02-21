@@ -37,5 +37,13 @@ export class Figure {
     this.logo = null;
     this.cell.figure = this;
   }
-
+  canMove(target: Cell): boolean {
+    if (target.figure?.color === this.color) {
+      return false;
+    }
+    return true;
+  }
+  moveFigure(target: Cell) {
+    
+  }
 }

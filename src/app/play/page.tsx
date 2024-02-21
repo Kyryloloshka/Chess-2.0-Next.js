@@ -8,9 +8,11 @@ import { useEffect, useState } from "react";
 export default function Play() {
   const [board, setBoard] = useState(new Board())
   const [whitePlayer] = useState<Player>(new Player(Colors.WHITE))
-	const [blackPlayer] = useState(new Player(Colors.BLACK))
+	const [blackPlayer] = useState<Player>(new Player(Colors.BLACK))
   const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer)
-
+  function swapPlayers() {
+		setCurrentPlayer(prev => prev === whitePlayer ? blackPlayer : whitePlayer);
+	}
   function restart() {
 		setCurrentPlayer(whitePlayer)
 		const newBoard = new Board();
@@ -29,6 +31,7 @@ export default function Play() {
       <ChessBoard
         board={board}
         setBoard={setBoard}
+        swapPlayers={swapPlayers}
         currentPlayer={currentPlayer}
       />
     </div>

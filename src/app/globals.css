@@ -330,4 +330,22 @@ body {
   transition: all 0.5s ease 0s;
 }
 
+.white.selected {
+	background-color: #767676;
+}
+.black.selected {
+	background-color: #1a1a1a;
+}
+.selected {
+  transition: 0.1s all ease;
+  position: relative;
+}
+.selected::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 3px solid #bbffa0;
+}
+
 
