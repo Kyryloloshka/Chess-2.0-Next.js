@@ -1,6 +1,5 @@
 import { Cell } from "../Cell";
 import { Colors } from "../Colors";
-import logo from "/assets/pieces/db.svg"
 
 export enum FigureNames {
 	"FIGURE",
@@ -23,7 +22,7 @@ export enum FigurePrioritet {
 
 export class Figure {
   color: Colors;
-  logo: typeof logo | null;
+  logo: string | null;
   cell: Cell;
   name: FigureNames;
   id: number;
