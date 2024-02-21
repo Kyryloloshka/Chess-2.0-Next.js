@@ -314,7 +314,7 @@ body {
   position: absolute;
   width: 30px;
   height: 2px;
-  background: var(--bg);
+  background: #ccc;
   transform: translateY(-8px);
   transition: all 0.5s ease 0s;
 }
@@ -324,8 +324,8 @@ body {
   position: absolute;
   width: 30px;
   height: 2px;
-  background: var(--bg);
+  background: #ccc;
   transform: translateY(8px);
-  box-shadow: 0px -8px 0px var(--bg);
+  box-shadow: 0px -8px 0px #ccc;
   transition: all 0.5s ease 0s;
 }
