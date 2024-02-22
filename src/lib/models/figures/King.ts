@@ -13,12 +13,32 @@ export class King extends Figure {
     this.name = FigureNames.KING;
   }
   canMove(target: Cell): boolean {
+    if (this.canThreaten(target)) {
+        const originalCell = this.cell;
+        const targetFigure = target.figure;
+        
+        this.cell.removeFigure();
+        target.figure = this;
+        this.cell = target;
+
+        const kingUnderCheck = this.cell.board.isCheck(this.color);
+
+        this.cell = originalCell;
+        originalCell.figure = this;
+        target.figure = targetFigure;
+
+        return !kingUnderCheck;
+      }
+      return false;
+  }
+
+  canThreaten(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
     }
     const x = Math.abs(target.x - this.cell.x);
     const y = Math.abs(target.y - this.cell.y)
-    if ( x <= 1 && x >= -1 && y <= 1 && y >= -1) {
+    if ( x <= 1 && x >= -1 && y <= 1 && y >= -1 && (y != 0 || x != 0)) {
       return true
     }
     const leftRook = target.board.getCell(0, this.cell.y);
@@ -44,9 +64,15 @@ export class King extends Figure {
       && rightRook.figure instanceof Rook
       && !rightRook.figure.isMoved)
   }
-  isCheck() {
-    return this.cell.board.checkIsCellUnderAttack(this.color, this.cell);
+
+  isCheck(): boolean {
+    if ( this.cell.board.checkIsCellUnderAttack(this.color, this.cell)) {
+      console.log("check");
+      return true;
+    };
+    return false
   }
+
   moveFigure(target: Cell): void {
     const leftRook = target.board.getCell(0, this.cell.y);
     const leftRookPlace = target.board.getCell(3, this.cell.y)

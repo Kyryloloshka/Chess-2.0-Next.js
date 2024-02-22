@@ -43,6 +43,12 @@ export class Figure {
     }
     return true;
   }
+  canThreaten(target: Cell): boolean {
+    if (target.figure?.color === this.color) {
+      return false;
+    }
+    return true;
+  }
   moveFigure(target: Cell) {
   }
 }

@@ -13,6 +13,25 @@ export class Rook extends Figure {
     this.prioritet = FigurePrioritet.ROOK
   }
   canMove(target: Cell): boolean {
+    if (this.canThreaten(target)) {
+      const originalCell = this.cell;
+      const targetFigure = target.figure;
+      
+      this.cell.removeFigure();
+      target.figure = this;
+      this.cell = target;
+
+      const kingUnderCheck = this.cell.board.isCheck(this.color);
+
+      this.cell = originalCell;
+      originalCell.figure = this;
+      target.figure = targetFigure;
+
+      return !kingUnderCheck;
+    }
+    return false
+  }
+  canThreaten(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false
     }
@@ -21,6 +40,7 @@ export class Rook extends Figure {
     }
     
     return false
+
   }
   moveFigure(target: Cell): void {
     this.isMoved = true;

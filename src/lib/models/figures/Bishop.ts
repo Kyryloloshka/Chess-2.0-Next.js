@@ -11,7 +11,28 @@ export class Bishop extends Figure {
     this.name = FigureNames.BISHOP;
     this.prioritet = FigurePrioritet.BISHOP;
   }
+
   canMove(target: Cell): boolean {
+    if (this.canThreaten(target)) {
+      const originalCell = this.cell;
+      const targetFigure = target.figure;
+      
+      this.cell.removeFigure();
+      target.figure = this;
+      this.cell = target;
+
+      const kingUnderCheck = this.cell.board.isCheck(this.color);
+
+      this.cell = originalCell;
+      originalCell.figure = this;
+      target.figure = targetFigure;
+
+      return !kingUnderCheck;
+    }
+    return false
+  }
+
+  canThreaten(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false
     }
@@ -21,6 +42,7 @@ export class Bishop extends Figure {
     
     return false
   }
+
   moveFigure(target: Cell): void {
     super.moveFigure(target);
   }

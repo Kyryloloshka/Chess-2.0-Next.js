@@ -6,16 +6,39 @@ const whiteLogo = "/assets/pieces/wp.svg"
 export class Pawn extends Figure {
   isFirstStep: boolean = true
   isPreviousStepFirst: boolean = true
+
   constructor(color: Colors, cell: Cell) {
     super(color, cell);
     this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
     this.name = FigureNames.PAWN;
     this.prioritet = FigurePrioritet.PAWN
   }
+
   setIsPrevFirstStep(isPreviousStepFirst: boolean) {
     this.isPreviousStepFirst = isPreviousStepFirst
   }
+
   canMove(target: Cell): boolean {
+    if (this.canThreaten(target)) {
+      const originalCell = this.cell;
+      const targetFigure = target.figure;
+      
+      this.cell.removeFigure();
+      target.figure = this;
+      this.cell = target;
+
+      const kingUnderCheck = this.cell.board.isCheck(this.color);
+
+      this.cell = originalCell;
+      originalCell.figure = this;
+      target.figure = targetFigure;
+
+      return !kingUnderCheck;
+    }
+    return false
+  }
+
+  canThreaten(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false
     }
@@ -53,6 +76,7 @@ export class Pawn extends Figure {
     }
     return false
   }
+
   moveFigure(target: Cell): void {
     const directionY = this.cell.figure?.color === Colors.BLACK ? 1 : -1
     const rightCell = this.cell.board.getCell(this.cell.x + 1, this.cell.y);

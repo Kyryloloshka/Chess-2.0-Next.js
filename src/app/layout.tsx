@@ -17,8 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="w-[100vw]">
-        <main className="flex w-[100vw]">
+      <body className="">
+        <main className="flex">
           <SideBar />
           <div className="flex-auto">
             {children}

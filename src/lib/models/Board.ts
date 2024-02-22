@@ -22,6 +22,19 @@ export class Board {
 			this.cells.push(row)
 		}
 	}
+	public isCheck(color: Colors): boolean {
+		for (let i = 0; i < 8; i++) {
+			for (let j = 0; j < 8; j++) {
+				const cell = this.getCell(i, j);
+				if (cell.figure?.color === color && cell.figure instanceof King) {
+					if (cell.figure.isCheck()) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 	public setAllPownsFirstStepToFalse(color: Colors, cellFigure: Cell) {
 		for (let i = 0; i < 8; i++) {
 			for (let j = 0; j < 8; j++) {
@@ -36,7 +49,7 @@ export class Board {
 		for (let i = 0; i < 8; i++) {
 			for (let j = 0; j < 8; j++) {
 				const cell = this.getCell(i, j)
-				if (cell.figure && cell.figure.color !== notColor && cell.figure.canMove(checkCell)) {
+				if (cell.figure && cell.figure.color !== notColor && cell.figure.canThreaten(checkCell)) {
 					return true
 				}
 			}
@@ -87,7 +100,7 @@ export class Board {
 		new Bishop(Colors.WHITE, this.getCell(5, 7))
 		new Bishop(Colors.BLACK, this.getCell(5, 0))
 	}
-	private addKnight() {
+	private addKnights() {
 		new Knight(Colors.WHITE, this.getCell(1, 7))
 		new Knight(Colors.BLACK, this.getCell(1, 0))
 		new Knight(Colors.WHITE, this.getCell(6, 7))
@@ -105,10 +118,10 @@ export class Board {
 	}
 	public addFigures() {
 		this.addPawns()
-		this.addKings()
-		this.addBishops()
-		this.addKnight()
 		this.addQueens()
+		this.addKnights()
+		this.addBishops()
+		this.addKings()
 		this.addRooks()
 	}
 }
