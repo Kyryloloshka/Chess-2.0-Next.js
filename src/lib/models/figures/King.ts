@@ -67,7 +67,6 @@ export class King extends Figure {
 
   isCheck(): boolean {
     if ( this.cell.board.checkIsCellUnderAttack(this.color, this.cell)) {
-      console.log("check");
       return true;
     };
     return false

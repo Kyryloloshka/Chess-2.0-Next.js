@@ -1,6 +1,7 @@
 import { Cell } from "../Cell";
 import { Colors } from "../Colors";
 import { Figure, FigureNames, FigurePrioritet } from "./Figure";
+import { Queen } from "./Queen";
 const blackLogo = "/assets/pieces/bp.svg"
 const whiteLogo = "/assets/pieces/wp.svg"
 export class Pawn extends Figure {
@@ -71,7 +72,6 @@ export class Pawn extends Figure {
         && leftCell.figure.color !== this.color
         )
       ) {
-      console.log(rightCell, leftCell);
       return true;
     }
     return false
@@ -100,6 +100,9 @@ export class Pawn extends Figure {
       this.isPreviousStepFirst = true
     }
     super.moveFigure(target);
+    if (target.y === 7 || target.y === 0) {
+      this.cell.setFigure(new Queen(this.color, this.cell))
+    }
     this.isFirstStep = false;
   }
 }

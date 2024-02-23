@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import CellComponent from './CellComponent';
 import { Cell } from '@/lib/models/Cell';
 import { Colors } from '@/lib/models/Colors';
+import { Figure } from '@/lib/models/figures/Figure';
 
 interface ChessBoardProps {
   board: Board;
@@ -15,7 +16,6 @@ interface ChessBoardProps {
 
 const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers}: ChessBoardProps) => {
 	const [selectedCell, setSelectedCell] = useState<Cell>(null!)
-	
 	function click(cell: Cell) {
 		if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
 			selectedCell.moveFigure(cell);
@@ -48,10 +48,10 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers}: ChessBoardPro
 					<React.Fragment key={index}>
 						{row.map(cell =>
 							<CellComponent
-								cell={cell}
-								key={cell.id}
-								selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
-								click={click}
+							cell={cell}
+							key={cell.id}
+							selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
+							click={click}
 							/>
 						)}
 					</React.Fragment>
