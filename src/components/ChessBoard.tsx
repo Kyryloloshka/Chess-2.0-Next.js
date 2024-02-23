@@ -5,7 +5,12 @@ import React, { useEffect, useState } from 'react';
 import CellComponent from './CellComponent';
 import { Cell } from '@/lib/models/Cell';
 import { Colors } from '@/lib/models/Colors';
-import { Figure } from '@/lib/models/figures/Figure';
+import { Figure, FigureNames } from '@/lib/models/figures/Figure';
+import PawnPromotionModal from './PawnPromotionModal';
+import { Queen } from '@/lib/models/figures/Queen';
+import { Rook } from '@/lib/models/figures/Rook';
+import { Bishop } from '@/lib/models/figures/Bishop';
+import { Knight } from '@/lib/models/figures/Knight';
 
 interface ChessBoardProps {
   board: Board;
@@ -16,6 +21,18 @@ interface ChessBoardProps {
 
 const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers}: ChessBoardProps) => {
 	const [selectedCell, setSelectedCell] = useState<Cell>(null!)
+	const [isPawnPromotionModalOpen, setPawnPromotionModalOpen] = useState(false);
+	const [cellToUppendFigure, setCellToUppendFigure] = useState<Cell | null>(null);
+
+	const openPawnPromotionModal = (cell: Cell) => {
+		setPawnPromotionModalOpen(true);
+		setCellToUppendFigure(cell)
+	};
+
+	const closePawnPromotionModal = () => {
+		setPawnPromotionModalOpen(false);
+	};
+
 	function click(cell: Cell) {
 		if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
 			selectedCell.moveFigure(cell);
@@ -26,6 +43,9 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers}: ChessBoardPro
 			if (cell.figure?.color === currentPlayer?.color) {
 				setSelectedCell(cell)
 			}
+		}
+		if (cell.figure?.name === FigureNames.PAWN && (cell.y === 7 || cell.y === 0)) {
+			openPawnPromotionModal(cell)
 		}
 	}
 	useEffect(() => {
@@ -57,6 +77,11 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers}: ChessBoardPro
 					</React.Fragment>
 				)}
 			</div>
+			<PawnPromotionModal
+				isOpen={isPawnPromotionModalOpen}
+				onClose={closePawnPromotionModal}
+				cell={cellToUppendFigure}
+			/>
     </div>
   )
 };

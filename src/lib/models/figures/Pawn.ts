@@ -100,9 +100,6 @@ export class Pawn extends Figure {
       this.isPreviousStepFirst = true
     }
     super.moveFigure(target);
-    if (target.y === 7 || target.y === 0) {
-      this.cell.setFigure(new Queen(this.color, this.cell))
-    }
     this.isFirstStep = false;
   }
 }
