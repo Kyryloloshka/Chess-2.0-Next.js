@@ -1,6 +1,6 @@
 "use client"
 import usePointerMove from "@/hooks/usePointerMove";
-import syncPointer from "@/lib/utils";
+import { syncPointer } from "@/lib/utils";
 export const PrimaryButton = (props : any) => {
   usePointerMove((event) => {
     syncPointer({ x: event.clientX, y: event.clientY });

@@ -41,7 +41,7 @@ const SideBar = () => {
   };
   const pathname = usePathname();
   return (
-    <section className="pb-[80px] mr-5 ">
+    <section className="pb-[80px] mr-[52px] ">
       <div className={`navigation${isNavigationActive ? ' _active' : ''}`}>
         <div className="navigation__menuToggle" onClick={toggleNavigation}></div>
         <ul className="navigation__list">

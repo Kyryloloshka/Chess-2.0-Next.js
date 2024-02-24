@@ -1,6 +1,6 @@
 "use client"
 import usePointerMove from "@/hooks/usePointerMove";
-import syncPointer from "@/lib/utils";
+import { syncPointer } from "@/lib/utils";
 import Link from "next/link";
 export const PrimaryLink = (props : any) => {
   usePointerMove((event) => {

@@ -26,12 +26,14 @@ export default function Play() {
 	}, [])
   return (
     <div className="min-h-[100vh] flex justify-center items-center gap-10 flex-wrap">
-      <ChessBoard
-        board={board}
-        setBoard={setBoard}
-        swapPlayers={swapPlayers}
-        currentPlayer={currentPlayer}
-      />
+      <div className="flex-center flex-auto relative max-h-[70vh] max-w-[70vw]">
+        <ChessBoard
+          board={board}
+          setBoard={setBoard}
+          swapPlayers={swapPlayers}
+          currentPlayer={currentPlayer}
+        />
+      </div>
     </div>
   );
 }

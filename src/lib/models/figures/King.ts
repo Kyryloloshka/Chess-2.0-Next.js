@@ -52,7 +52,6 @@ export class King extends Figure {
       && target.board.getCell(this.cell.x - 3, this.cell.y).isEmpty()
       && !this.cell.board.checkIsCellUnderAttack(this.color, this.cell.board.getCell(this.cell.x - 1, this.cell.y))
       && !this.cell.board.checkIsCellUnderAttack(this.color, this.cell.board.getCell(this.cell.x - 2, this.cell.y))
-      && !this.cell.board.checkIsCellUnderAttack(this.color, this.cell.board.getCell(this.cell.x - 4, this.cell.y))
       && leftRook.figure instanceof Rook
       && !leftRook.figure.isMoved
       || target.x === 6
@@ -60,7 +59,6 @@ export class King extends Figure {
       && this.cell.board.getCell(this.cell.x + 2, this.cell.y).isEmpty()
       && !this.cell.board.checkIsCellUnderAttack(this.color, this.cell.board.getCell(this.cell.x + 1, this.cell.y))
       && !this.cell.board.checkIsCellUnderAttack(this.color, this.cell.board.getCell(this.cell.x + 2, this.cell.y))
-      && !this.cell.board.checkIsCellUnderAttack(this.color, this.cell.board.getCell(this.cell.x + 3, this.cell.y))
       && rightRook.figure instanceof Rook
       && !rightRook.figure.isMoved)
   }
