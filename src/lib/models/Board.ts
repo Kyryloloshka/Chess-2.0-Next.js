@@ -35,6 +35,25 @@ export class Board {
 		}
 		return false;
 	}
+	public isMate(color: Colors): boolean {
+		return this.isCheck(color) && this.isPat(color)
+	}
+	public isPat(color: Colors):boolean {
+		for (let i = 0; i < 8; i++) {
+			for (let j = 0; j < 8; j++) {
+				const cell = this.getCell(i, j);
+				for (let k = 0; k < 8; k++) {
+					for (let l = 0; l < 8; l++) {
+						const cellMove = this.getCell(k, l);
+						if (cell.figure?.color === color && cell.figure.canMove(cellMove)) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true
+	}
 	public setAllPownsFirstStepToFalse(color: Colors, cellFigure: Cell) {
 		for (let i = 0; i < 8; i++) {
 			for (let j = 0; j < 8; j++) {
@@ -117,11 +136,7 @@ export class Board {
 		new Rook(Colors.BLACK, this.getCell(7, 0))
 	}
 	public addFigures() {
-		this.addPawns()
 		this.addQueens()
-		this.addKnights()
-		this.addBishops()
 		this.addKings()
-		this.addRooks()
 	}
 }
