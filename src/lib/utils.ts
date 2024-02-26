@@ -18,19 +18,20 @@ const syncPointer = ({ x: PointerX, y: PointerY }: { x: number; y: number }) => 
 };
 
 enum Coordinates {
-  "A" = 0,
-  "B" = 1,
-  "C" = 2,
-  "D" = 3,
-  "E" = 4,
-  "F" = 5,
-  "G" = 6,
-  "H" = 7
+  "a" = 0,
+  "b" = 1,
+  "c" = 2,
+  "d" = 3,
+  "e" = 4,
+  "f" = 5,
+  "g" = 6,
+  "h" = 7
 }
 
-const transformCoordinates = (cell: Cell ) => {
-  const letter = Coordinates[cell.x]
-  return `${letter}${8 - cell.y}`;
+const transformCoordinates = (cellFrom: Cell, cellTo: Cell ) => {
+  const letterFrom = Coordinates[cellFrom.x]
+  const letterTo = Coordinates[cellTo.x]
+  return `${letterFrom}${8 - cellFrom.y} ${letterTo}${8 - cellTo.y}`;
 }
 
 export {syncPointer, transformCoordinates};

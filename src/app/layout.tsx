@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="">
-        <main className="flex">
+        <main className="flex overflow-x-hidden">
           <SideBar />
           <div className="flex-auto">
             {children}

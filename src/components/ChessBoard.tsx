@@ -14,12 +14,13 @@ interface ChessBoardProps {
   setBoard: Function;
   currentPlayer: Player;
 	swapPlayers: Function;
+	setMovesList: Function;
 }
 
-const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers}: ChessBoardProps) => {
+const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList}: ChessBoardProps) => {
 	const [selectedCell, setSelectedCell] = useState<Cell>(null!)
 	const [isPawnPromotionModalOpen, setPawnPromotionModalOpen] = useState(false);
-	const [movesList, setMovesList] = useState<Array<{figure: Figure | null; to: Cell }>>([]);
+	
 	const [cellToUppendFigure, setCellToUppendFigure] = useState<Cell | null>(null);
 	const [isMate, setIsMate] = useState<boolean>(false);
 	const [isPat, setIsPat] = useState<boolean>(false);
@@ -46,9 +47,9 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers}: ChessBoardPro
 			if (cell.figure?.name === FigureNames.PAWN && (cell.y === 7 || cell.y === 0)) {
 				openPawnPromotionModal(cell)
 			}
-			setMovesList((prevHistory) => [
+			setMovesList((prevHistory: Array<{figure: Figure | null; from: Cell; to: Cell }>) => [
         ...prevHistory,
-        { figure: cell.figure, to: cell },
+        { figure: cell.figure, from: selectedCell, to: cell },
       ]);
 		} else {
 			if (cell.figure?.color === currentPlayer?.color) {
@@ -95,13 +96,7 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers}: ChessBoardPro
 				</div>
 				
 			</div>
-			<div className="p-3 text-light-2 self-start grid grid-cols-2 gap-x-5 w-[150px] ">
-				{movesList.map((item, index) => {
-					return <div className='flex items-center gap-1'>
-						<img src={`${item.figure?.logo}`} className='h-8' alt={`${item.figure?.name}`} />
-						{`${transformCoordinates(item.to)}`}</div>
-				})}
-			</div>
+			
 			<PawnPromotionModal
 				isOpen={isPawnPromotionModalOpen}
 				onClose={closePawnPromotionModal}

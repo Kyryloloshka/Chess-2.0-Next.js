@@ -348,4 +348,18 @@ body {
   border: 3px solid #bbffa0;
 }
 
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-[4px] h-[4px] rounded-[2px] transition-colors;
+}
 
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-dark-5 dark:bg-light-2;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-light-4 rounded-[50px];
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(116, 116, 144);
+}
