@@ -23,11 +23,13 @@ export default function Play() {
 		newBoard.initCells()
     newBoard.addFigures()
 		setBoard(newBoard)
+    setMovesList([])
 	}
 
   useEffect(() => {
 		restart()
 	}, [])
+
   return (
     <div className="p-5 gap-5 flex justify-center">
       <div className="flex-center rounded-[10px] flex-auto relative max-w-[calc(100dvh-2.5rem)] max-h-[calc(100dvh-2.5rem)] overflow-hidden  self-start">
@@ -37,6 +39,7 @@ export default function Play() {
           swapPlayers={swapPlayers}
           currentPlayer={currentPlayer}
           setMovesList={setMovesList}
+          restart={restart}
         />
       </div>
       <div className=" bg-[#00000030] custom-scrollbar rounded-[10px] min-h-full max-h-[calc(100vh-2.5rem)] overflow-y-auto overflow-x-hidden">

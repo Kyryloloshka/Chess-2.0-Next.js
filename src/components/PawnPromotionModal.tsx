@@ -1,7 +1,6 @@
-import { Figure, FigureNames } from '@/lib/models/figures/Figure';
-import React, { useState, useEffect } from 'react';
+import { FigureNames } from '@/lib/models/figures/Figure';
+import React from 'react';
 import Modal from 'react-modal';
-import { PrimaryButton } from './PrimaryButton';
 import { Cell } from '@/lib/models/Cell';
 import { Queen } from '@/lib/models/figures/Queen';
 import { Bishop } from '@/lib/models/figures/Bishop';

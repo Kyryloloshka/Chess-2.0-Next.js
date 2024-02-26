@@ -7,7 +7,8 @@ import { Cell } from '@/lib/models/Cell';
 import PawnPromotionModal from './PawnPromotionModal';
 import { Figure, FigureNames } from '@/lib/models/figures/Figure';
 import { Colors } from '@/lib/models/Colors';
-import { transformCoordinates } from '@/lib/utils';
+import Modal from "react-modal"
+import { PrimaryButton } from './PrimaryButton';
 
 interface ChessBoardProps {
   board: Board;
@@ -15,15 +16,16 @@ interface ChessBoardProps {
   currentPlayer: Player;
 	swapPlayers: Function;
 	setMovesList: Function;
+	restart: Function;
 }
 
-const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList}: ChessBoardProps) => {
+const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList, restart}: ChessBoardProps) => {
 	const [selectedCell, setSelectedCell] = useState<Cell>(null!)
 	const [isPawnPromotionModalOpen, setPawnPromotionModalOpen] = useState(false);
-	
 	const [cellToUppendFigure, setCellToUppendFigure] = useState<Cell | null>(null);
-	const [isMate, setIsMate] = useState<boolean>(false);
 	const [isPat, setIsPat] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalText, setModalText] = useState('');
 	const openPawnPromotionModal = (cell: Cell) => {
 		setPawnPromotionModalOpen(true);
 		setCellToUppendFigure(cell)
@@ -39,10 +41,12 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList}:
 			swapPlayers()
 			setSelectedCell(null!)
 			updateBoard()
-			if (board.isMate(currentPlayer.color === Colors.BLACK ? Colors.WHITE : Colors.BLACK)) {
-				setIsMate(true);
-			} else if (board.isPat(currentPlayer.color === Colors.BLACK ? Colors.WHITE : Colors.BLACK)) {
+			const curPlayerColor = currentPlayer.color === Colors.BLACK ? Colors.WHITE : Colors.BLACK
+			if (board.isMate(curPlayerColor)) {
+				openModal("Mate", curPlayerColor);
+			} else if (board.isPat(curPlayerColor)) {
 				setIsPat(true);
+				openModal("Pat")
 			}
 			if (cell.figure?.name === FigureNames.PAWN && (cell.y === 7 || cell.y === 0)) {
 				openPawnPromotionModal(cell)
@@ -71,15 +75,22 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList}:
 		const newBoard = board.getCopyBoard()
 		setBoard(newBoard)
 	}
+
+	const openModal = (caseEnd: string, curPlayerColor: Colors | null = null) => {
+		if (caseEnd === "Mate" && curPlayerColor) {
+			setModalText(curPlayerColor === Colors.WHITE ? "Black win" : "White win" );
+		} else {
+			setModalText("Draw");
+		}
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className="min-w-[250px] flex-auto flex-center">
 			<div className="relative flex-auto">
-				{<div className={`h-full w-full absolute left-0 top-0 text-3xl transition-all text-light-2 font-semibold pointer-events-none tracking-wider ${isMate && "bg-[#00000080]"} z-20 flex-center`}>
-					<span className={`opacity-0 ${isMate && "opacity-100"} transition-all`}>{currentPlayer.color === Colors.WHITE ? "Black win" : "White win"}</span>
-				</div>}
-				{<div className={`h-full w-full absolute left-0 top-0 text-3xl transition-all text-light-2 font-semibold pointer-events-none tracking-wider ${isPat && "bg-[#00000080]"} z-20 flex-center`}>
-					<span className={`opacity-0 ${isPat && "opacity-100"} transition-all`}>Draw</span>
-				</div>}
 				<div className="grid grid-rows-8 grid-cols-8 min-w-[200px] aspect-square select-none">
 					{board.cells.map((row, index) =>
 						<React.Fragment key={index}>
@@ -102,6 +113,15 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList}:
 				onClose={closePawnPromotionModal}
 				cell={cellToUppendFigure}
 			/>
+			<Modal isOpen={isModalOpen}  style={{ overlay: { background: "#00000070" } }} className={"h-full pb-36 flex flex-center p-5"}>
+				<div className={`opacity-0 ${isPat && "opacity-100"} transition-all flex flex-col gap-5 items-center`}>
+					<span className='text-light-2 text-3xl font-semibold tracking-wider'>{modalText}</span>
+          <PrimaryButton onClick={() => {
+            restart()
+						closeModal()
+          }}>Restart</PrimaryButton>
+        </div>
+			</Modal>
     </div>
   )
 };
