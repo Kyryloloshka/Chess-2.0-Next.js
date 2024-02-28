@@ -46,7 +46,7 @@ export default function Play() {
         <div className="bg-dark-5 text-white py-1 px-3">Move List</div>
         <div className="text-light-2 min-w-[200px] grid grid-cols-2 p-1">
           {movesList.map((item, index) => {
-            return <div className='flex items-center select-none'>
+            return <div className='flex items-center select-none' key={index}>
               <img src={`${item.figure?.logo}`} className='h-5' alt={`${item.figure?.name}`} />
               {`${transformCoordinates(item.from, item.to)}`}</div>
           })}

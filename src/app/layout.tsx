@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {Poppins} from "next/font/google";
 import "./globals.css";
 import SideBar from "@/components/SideBar";
+import AuthProvider from "@/components/auth";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "600"] });
 
