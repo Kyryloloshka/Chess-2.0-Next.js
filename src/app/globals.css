@@ -38,9 +38,10 @@
     --xp: 0;
     --yp: 0;
     --hue: calc(0 + (var(--xp) * 500));
-    --bg: hsl(0, 0%, 27%);
     --button-bg-size: 100px;
-    --primary-color: rgba(224, 116, 39, 0.75);
+    --primary-color: #d98fef;
+    --shadow-primary: rgba(242, 97, 255, 0.1);
+    --shadow-primary-neon: rgba(229, 97, 255, 0.302);
     --glow: radial-gradient(
       50% 50% at center,
       hsl(var(--hue) 80% 85%),
@@ -97,7 +98,7 @@
   }
 } 
 body {
-  background: var(--bg);
+  @apply text-light-2 bg-dark-5;
 }
 
 @layer base {
@@ -345,7 +346,7 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
-  border: 3px solid #bbffa0;
+  border: 3px solid #d98fef;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -362,4 +363,8 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgb(116, 116, 144);
+}
+
+.primary-shadow {
+  @apply shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] hover:border-[var(--primary-color)]
 }

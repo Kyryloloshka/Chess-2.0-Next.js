@@ -8,7 +8,7 @@ import PawnPromotionModal from './PawnPromotionModal';
 import { Figure, FigureNames } from '@/lib/models/figures/Figure';
 import { Colors } from '@/lib/models/Colors';
 import Modal from "react-modal"
-import { PrimaryButton } from './PrimaryButton';
+import { Button } from './ui/button';
 
 interface ChessBoardProps {
   board: Board;
@@ -116,10 +116,10 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList, 
 			<Modal isOpen={isModalOpen}  style={{ overlay: { background: "#00000070" } }} className={"h-full pb-36 flex flex-center p-5"}>
 				<div className={`opacity-0 ${isPat && "opacity-100"} transition-all flex flex-col gap-5 items-center`}>
 					<span className='text-light-2 text-3xl font-semibold tracking-wider'>{modalText}</span>
-          <PrimaryButton onClick={() => {
+          <Button variant={"neon"} onClick={() => {
             restart()
 						closeModal()
-          }}>Restart</PrimaryButton>
+          }}>Restart</Button>
         </div>
 			</Modal>
     </div>

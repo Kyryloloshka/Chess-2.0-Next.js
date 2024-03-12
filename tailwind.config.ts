@@ -19,8 +19,9 @@ const config = {
     },
     extend: {
       colors: {
-        'primary-500': '#877EFF',
-        'primary-600': '#5D5FEF',
+        'primary-500': '#d98fef',
+        'primary-600': '#c97fdf',
+        'primary-700': '#a95fbf',
         'secondary-500': '#FFB620',
         'off-white': '#D0DFFF',
         'red': '#FF5A5A',

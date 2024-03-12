@@ -41,18 +41,18 @@ const SideBar = () => {
   };
   const pathname = usePathname();
   return (
-    <section className="pb-[80px] mr-[52px] ">
-      <div className={`navigation${isNavigationActive ? ' _active' : ''}`}>
-        <div className="navigation__menuToggle" onClick={toggleNavigation}></div>
-        <ul className="navigation__list">
+    <section className="py-1 min-h-[100%] primary-shadow">
+      <div className={`${isNavigationActive ? ' _active' : ''}`}>
+        <div className="" onClick={toggleNavigation}></div>
+        <ul className="flex flex-col">
           {sideBarLinks.map((link) => {
             return (
-              <li key={link.route} className={`navigation__item ${pathname == link.route && "_active"}`} onClick={activateLink}>
-                <Link href={link.route} className="navigation__link">
-                <span className="navigation__icon">
-                  <img src={`/assets/sideBarIcons/${link.icon}`}/>
+              <li key={link.route} className={`hover:bg-dark-4 px-3 py-1.5 transition ${pathname == link.route && "_active"}`} onClick={activateLink}>
+                <Link href={link.route} className="flex items-center gap-3">
+                <span className="">
+                  <img className='w-8 h-8' src={`/assets/sideBarIcons/${link.icon}`}/>
                 </span>
-                <span className='navigation__text whitespace-nowrap'>{link.label}</span>
+                <span className='whitespace-nowrap'>{link.label}</span>
                 </Link>
               </li>
             )

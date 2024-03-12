@@ -6,17 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const syncPointer = ({ x: PointerX, y: PointerY }: { x: number; y: number }) => {
-  const x = PointerX.toFixed(2);
-  const y = PointerY.toFixed(2);
-  const xp = (PointerX / window.innerWidth).toFixed(2);
-  const yp = (PointerY / window.innerWidth).toFixed(2);
-  document.documentElement.style.setProperty("--x", x);
-  document.documentElement.style.setProperty("--xp", xp);
-  document.documentElement.style.setProperty("--y", y);
-  document.documentElement.style.setProperty("--yp", yp);
-};
-
 enum Coordinates {
   "a" = 0,
   "b" = 1,
@@ -34,4 +23,4 @@ const transformCoordinates = (cellFrom: Cell, cellTo: Cell ) => {
   return `${letterFrom}${8 - cellFrom.y} ${letterTo}${8 - cellTo.y}`;
 }
 
-export {syncPointer, transformCoordinates};
+export {transformCoordinates};

@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <main className="flex overflow-x-hidden">
+        <main className="flex min-h-[100dvh] overflow-x-hidden">
           <SideBar />
           <div className="flex-auto">
             <AuthProvider>
