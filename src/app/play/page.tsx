@@ -31,8 +31,8 @@ export default function Play() {
 	}, [])
 
   return (
-    <div className="p-5 gap-5 flex justify-center">
-      <div className="flex-center rounded-[10px] flex-auto relative max-w-[calc(100dvh-2.5rem)] max-h-[calc(100dvh-2.5rem)] overflow-hidden  self-start">
+    <div className="p-5 gap-5 flex flex-col min-h-[80vh] sm:min-h-[400px] sm:flex-row justify-center">
+      <div className="flex-center sm:flex-auto rounded-[10px] w-[100%] sm:w-auto  relative sm:max-w-[calc(100dvh-2.5rem)] sm:max-h-[calc(100dvh-2.5rem)] overflow-hidden  self-start">
         <ChessBoard
           board={board}
           setBoard={setBoard}
@@ -42,7 +42,7 @@ export default function Play() {
           restart={restart}
         />
       </div>
-      <div className=" bg-[#00000030] custom-scrollbar rounded-[10px] min-h-full max-h-[calc(100vh-2.5rem)] overflow-y-auto overflow-x-hidden">
+      <div className=" bg-[#00000030] flex-auto custom-scrollbar rounded-[10px] min-h-full max-h-[calc(100vh-2.5rem)] overflow-y-auto overflow-x-hidden">
         <div className="bg-dark-4 text-white py-1 px-3 primary-shadow">Move List</div>
         <div className="text-light-2 min-w-[200px] grid grid-cols-2 p-1">
           {movesList.map((item, index) => {

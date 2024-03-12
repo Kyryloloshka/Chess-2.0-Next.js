@@ -44,9 +44,10 @@ const Login = () => {
                             <h3 className="text-light-2 text-xl font-semibold sm:text-2xl">Welcome Back</h3>
                         </div>
                     </div>
+                    <div className="text-sm">This Authorization method is not available yet</div>
                     <form
                         onSubmit={onSubmit}
-                        className="space-y-5"
+                        className="space-y-5 opacity-50"
                     >
                         <div>
                             <label className="text-sm text-gray-300 font-bold">
@@ -56,6 +57,7 @@ const Login = () => {
                                 type="email"
                                 autoComplete='email'
                                 required
+                                disabled
                                 value={email} onChange={(e) => { setEmail(e.target.value) }}
                                 className="w-full mt-2 px-3 py-2 text-light-2 bg-transparent outline-none border focus:border-primary-500 shadow-sm rounded-lg transition duration-300"
                             />
@@ -70,6 +72,7 @@ const Login = () => {
                                 type="password"
                                 autoComplete='current-password'
                                 required
+                                disabled
                                 value={password} onChange={(e) => { setPassword(e.target.value) }}
                                 className="w-full mt-2 px-3 py-2 text-light-2 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg transition duration-300"
                             />
@@ -81,7 +84,8 @@ const Login = () => {
 
                         <button
                             type="submit"
-                            disabled={isSigningIn}
+                            // disabled={isSigningIn}
+                            disabled
                             className={`w-full px-4 py-2 text-white font-medium rounded-lg ${isSigningIn ? 'bg-gray-300 cursor-not-allowed' : 'bg-primary-600 hover:bg-primary-700 hover:shadow-xl transition duration-300'}`}
                         >
                             {isSigningIn ? 'Signing In...' : 'Sign In'}

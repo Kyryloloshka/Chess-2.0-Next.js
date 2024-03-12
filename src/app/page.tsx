@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const currentUser = useAuth()
   const router = useRouter()
+  
   return (
       <div className="flex-center min-h-[100dvh] flex-col gap-4">
         <Link href='/play'><Button variant={"neon"}>play</Button></Link>

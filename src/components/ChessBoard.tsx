@@ -7,7 +7,6 @@ import { Cell } from '@/lib/models/Cell';
 import PawnPromotionModal from './PawnPromotionModal';
 import { Figure, FigureNames } from '@/lib/models/figures/Figure';
 import { Colors } from '@/lib/models/Colors';
-import Modal from "react-modal"
 import { Button } from './ui/button';
 
 interface ChessBoardProps {
@@ -89,8 +88,8 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList, 
     setIsModalOpen(false);
   };
   return (
-    <div className="min-w-[250px] flex-auto flex-center">
-			<div className="relative flex-auto">
+    <div className="min-w-[250px] flex-auto flex-center relative">
+			<div className={`relative flex-auto ${isModalOpen && "pointer-events-none"}`}>
 				<div className="grid grid-rows-8 grid-cols-8 min-w-[200px] aspect-square select-none">
 					{board.cells.map((row, index) =>
 						<React.Fragment key={index}>
@@ -113,15 +112,19 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList, 
 				onClose={closePawnPromotionModal}
 				cell={cellToUppendFigure}
 			/>
-			<Modal isOpen={isModalOpen}  style={{ overlay: { background: "#00000070" } }} className={"h-full pb-36 flex flex-center p-5"}>
-				<div className={`opacity-0 ${isPat && "opacity-100"} transition-all flex flex-col gap-5 items-center`}>
-					<span className='text-light-2 text-3xl font-semibold tracking-wider'>{modalText}</span>
-          <Button variant={"neon"} onClick={() => {
-            restart()
-						closeModal()
-          }}>Restart</Button>
-        </div>
-			</Modal>
+			<div className={`absolute h-full w-full select-none bg-[#00000070] pointer-events-none left-0 top-0 z-10 flex flex-center ${isModalOpen ? "visible opacity-100" : "hidden opacity-0"}`}>
+				<div className={`h-[30%] pointer-events-auto aspect-square min-h-[180px] absolute bg-dark-4 rounded-lg flex flex-center p-5 transition-all flex-col gap-5 items-center` }>
+						<div onClick={() => setIsModalOpen(false)} className="cursor-pointer h-5 w-5 absolute top-3 right-3 flex-center">
+							<span className='h-[1px]  bg-white w-5 rotate-45 absolute'></span>
+							<span className='h-[1px]  bg-white w-5 -rotate-45 absolute'></span>
+						</div>
+						<span className='text-light-2 whitespace-nowrap text-2xl font-semibold tracking-wider'>{modalText}</span>
+						<Button variant={"neon"} onClick={() => {
+							restart()
+							closeModal()
+						}}>Restart</Button>				
+				</div>
+			</div>
     </div>
   )
 };
