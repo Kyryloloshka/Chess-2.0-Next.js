@@ -42,7 +42,7 @@ export default function Play() {
           restart={restart}
         />
       </div>
-      <div className=" bg-[#00000030] flex-auto custom-scrollbar rounded-[10px] min-h-full max-h-[calc(100vh-2.5rem)] overflow-y-auto overflow-x-hidden">
+      <div className=" bg-[#00000030] flex-auto sm:flex-initial custom-scrollbar rounded-[10px] min-h-full max-h-[calc(100vh-2.5rem)] overflow-y-auto overflow-x-hidden">
         <div className="bg-dark-4 text-white py-1 px-3 primary-shadow">Move List</div>
         <div className="text-light-2 min-w-[200px] grid grid-cols-2 p-1">
           {movesList.map((item, index) => {

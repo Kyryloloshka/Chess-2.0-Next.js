@@ -12,13 +12,10 @@ export type INavLink = {
 
 const SideBar = () => {
   const user = useAuth();
-  
-  const [isNavigationActive, setNavigationActive] = useState(false);
-
-  const toggleNavigation = () => {
-    setNavigationActive(!isNavigationActive);
-  };
-
+  const [isOpenBurger, setIsOpenBurger] = useState(false);
+  const toggleIsOpenBurger = () => {
+    setIsOpenBurger(prevState => !prevState);
+  }
   const activateLink = (event: React.MouseEvent<HTMLLIElement>) => {
     const clickedItem = event.currentTarget;
     const updatedList = Array.from(document.querySelectorAll('.navigation__item'));
@@ -31,10 +28,19 @@ const SideBar = () => {
   };
   const pathname = usePathname();
   return (
-    <section className="py-1 min-h-[100%] primary-shadow">
-      <div className={`${isNavigationActive ? ' _active' : ''}`}>
-        <div className="" onClick={toggleNavigation}></div>
-        <ul className="flex flex-col">
+    <section className="min-h-[100%] primary-shadow bg-dark-5">
+      <div className={`flex justify-between`}>
+        <header className='md:hidden z-20'>
+          <label className="hamburger" >
+            <input type="checkbox" onClick={() => toggleIsOpenBurger()}/>
+            <svg viewBox="0 0 32 32">
+              <path className="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+              <path className="line" d="M7 16 27 16"></path>
+            </svg>
+          </label>
+          <div className=""></div>
+        </header>
+        <ul className={`flex pt-12 flex-col absolute select-none md:block md:relative h-[100dvh] z-10 transition-all bg-dark-5 ${isOpenBurger ? "left-0" : "left-[-100%]"} md:left-0`}>
           {[
             {
               route: "/",
