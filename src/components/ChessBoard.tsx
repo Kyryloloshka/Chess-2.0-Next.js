@@ -53,21 +53,6 @@ const ChessBoard = ({board, setBoard, currentPlayer, swapPlayers, setMovesList, 
 			setMovesList((prevHistory: Array<{figure: Figure | null; from: Cell; to: Cell }>) => [
         ...prevHistory,
         { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
-        { figure: cell.figure, from: selectedCell, to: cell },
       ]);
 		} else {
 			if (cell.figure?.color === currentPlayer?.color) {

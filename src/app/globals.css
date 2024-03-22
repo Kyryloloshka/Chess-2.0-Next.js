@@ -98,7 +98,7 @@
   }
 } 
 body {
-  @apply text-light-2 bg-dark-3;
+  @apply text-light-2 bg-dark-3 font-light;
 }
 
 @layer base {

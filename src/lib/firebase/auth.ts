@@ -43,7 +43,7 @@ const createUserInUserCollection = async (user: User) => {
         gamesPlayed: 0,
         gamesLosed: 0,
         gamesWon: 0,
-        country: "world",
+        country: {value: "world", label: "world"},
         status: null,
         bio: null,
         games: [],
