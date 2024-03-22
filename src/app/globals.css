@@ -98,7 +98,7 @@
   }
 } 
 body {
-  @apply text-light-2 bg-dark-5;
+  @apply text-light-2 bg-dark-3;
 }
 
 @layer base {
@@ -369,6 +369,10 @@ body {
   @apply shadow-[0px_0px_20px_0px_var(--shadow-primary-neon)] hover:border-[var(--primary-color)]
 }
 
+.primary-inner-shadow {
+  @apply shadow-[inset_0px_0px_20px_0px_var(--shadow-primary-neon)] hover:border-[var(--primary-color)]
+}
+
 .hamburger {
   cursor: pointer;
 }
@@ -378,7 +382,7 @@ body {
 }
 
 .hamburger svg {
-  height: 3em;
+  height: 2.5em;
   transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -389,8 +393,10 @@ body {
   stroke-linejoin: round;
   stroke-width: 1;
   transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
-              stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+              stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              stroke 0.3s ease;
 }
+
 
 .line-top-bottom {
   stroke-dasharray: 12 63;
@@ -403,4 +409,11 @@ body {
 .hamburger input:checked + svg .line-top-bottom {
   stroke-dasharray: 20 300;
   stroke-dashoffset: -32.42;
+}
+.hamburger:hover .line {
+  stroke: var(--primary-color);
+}
+
+.common-container {
+  @apply flex flex-col h-[calc(100%-56px-66px)] md:h-full flex-1 items-center gap-10 overflow-y-scroll py-10 px-5 md:px-8 lg:p-14 custom-scrollbar;
 }

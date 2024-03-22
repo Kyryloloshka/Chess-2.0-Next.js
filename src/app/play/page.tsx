@@ -42,15 +42,16 @@ export default function Play() {
           restart={restart}
         />
       </div>
-      <div className=" bg-[#00000030] flex-auto sm:flex-initial custom-scrollbar rounded-[10px] min-h-full max-h-[calc(100vh-2.5rem)] overflow-y-auto overflow-x-hidden">
+      <div className=" bg-[#88888814] flex flex-col flex-auto overflow-hidden sm:flex-initial  rounded-[10px] min-h-full max-h-[calc(100vh-2.5rem)] ">
         <div className="bg-dark-4 text-white py-1 px-3 primary-shadow">Move List</div>
-        <div className="text-light-2 min-w-[200px] grid grid-cols-2 p-1">
+        <div className="text-light-2 min-w-[200px] grid grid-cols-2 p-1 flex-auto content-start custom-scrollbar overflow-y-auto overflow-x-hidden">
           {movesList.map((item, index) => {
             return <div className='flex items-center select-none' key={index}>
               <img src={`${item.figure?.logo}`} className='h-5' alt={`${item.figure?.name}`} />
               {`${transformCoordinates(item.from, item.to)}`}</div>
           })}
         </div>
+        <div onClick={restart} className="flex-center h-8 cursor-pointer bg-dark-4">restart</div>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ const SideBar = () => {
   };
   const pathname = usePathname();
   return (
-    <section className="min-h-[100%] primary-shadow bg-dark-5">
+    <section className="min-h-[100%] primary-shadow">
       <div className={`flex justify-between`}>
         <header className='md:hidden z-20'>
           <label className="hamburger" >
@@ -40,7 +40,7 @@ const SideBar = () => {
           </label>
           <div className=""></div>
         </header>
-        <ul className={`flex pt-12 flex-col absolute select-none md:block md:relative h-[100dvh] z-10 transition-all bg-dark-5 ${isOpenBurger ? "left-0" : "left-[-100%]"} md:left-0`}>
+        <ul className={`flex pt-12 md:pt-0 flex-col absolute select-none md:block md:relative h-[100dvh] z-10 transition-all bg-dark-3 ${isOpenBurger ? "left-0" : "left-[-100%]"} md:left-0`}>
           {[
             {
               route: "/",
@@ -52,14 +52,14 @@ const SideBar = () => {
               label: "Play game",
               icon: "horse.svg",
             },
-            user && {
+            user && user.currentUser && {
               route: `/profile/${user.currentUser.uid}`,
               label: "Profile",
               icon: "profile.svg"
             }
           ].map((link) => {
             return (
-              link && <li key={link.route} className={`hover:bg-dark-4 px-3 py-1.5 transition ${pathname == link.route && "bg-dark-4"}`} onClick={activateLink}>
+              link && <li key={link.route} className={`hover:bg-dark-2 px-3 py-1.5 transition ${pathname == link.route && "bg-dark-2"}`} onClick={activateLink}>
                 <Link href={link.route} className="flex items-center gap-3">
                 <span className="">
                   <img className='w-8 h-8' src={`/assets/sideBarIcons/${link.icon}`}/>
