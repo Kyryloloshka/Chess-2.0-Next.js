@@ -30,9 +30,9 @@ const page = ({params}: {params: {name: string}}) => {
   return (
     <div className='common-container'>
       {user?.email ? (
-        <div className='bg-[#00000030] p-5 rounded-lg min-w-full'>
+        <div className='bg-[#00000030] p-5 rounded-lg min-w-full overflow-hidden'>
           {loading ? <div>Loading...</div> : <div className='flex flex-col gap-6'>
-          <div className="flex gap-4 items-center">
+          <div className="flex-col sm:flex-row flex gap-4 items-center flex-wrap">
             <img
               src={
                 user.imageUrl || "/assets/icons/profile-placeholder.svg"
@@ -40,10 +40,9 @@ const page = ({params}: {params: {name: string}}) => {
               alt="profile"
               className="h-24 w-24 rounded-full bg-light-2 border-[2px] border-light-2"
             />
-            <div className="flex flex-col gap-1">
-
-              <div className="flex items-center gap-2">
-                <p className='text-xl font-bold'>{user.username}</p>
+            <div className="flex flex-col gap-1 items-center sm:items-start">
+              <div className="flex items-center gap-2 flex-nowrap">
+                <p className='text-xl font-bold whitespace-nowrap'>{user.username}</p>
                 {user.country.value === "world" ? <img className='h-[24px]' src='/assets/icons/world-flag.svg'></img> :
                 <ReactCountryFlag countryCode={user.country.value} style={{fontSize: "24px"}} svg />}
               </div>
@@ -56,7 +55,7 @@ const page = ({params}: {params: {name: string}}) => {
             <p>{user.bio ? user.bio: "Missing"}</p>
           </div>
           <hr className='border-dark-4'/>
-          <div className="max-w-[200px]">
+          <div className="sm:max-w-[280px]">
             <h3 className='font-semibold mb-2'>Statistics</h3>
             <div className='flex'><span className='flex-auto'>parties</span> <span>{user.gamesPlayed}</span></div>
             <div className='flex'><span className='flex-auto'>victories</span> <span>{user.gamesWon}</span></div>

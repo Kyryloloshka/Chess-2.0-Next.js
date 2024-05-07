@@ -11,6 +11,8 @@ export default function Home() {
   
   return (
       <div className="flex-center min-h-[100dvh] flex-col gap-4">
+        <h1 className="text-3xl text-white">Welcome to the game</h1>
+        <p className="text-white text-center">You can play the game by clicking the button below</p>
         <Link href='/play'><Button variant={"neon"}>play</Button></Link>
         <span className="text-white text-xl text-center">
           {currentUser.currentUser && <>
